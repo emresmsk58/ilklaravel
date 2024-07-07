@@ -17,9 +17,6 @@ return new class extends Migration
             $table->string('title');
             $table->integer('number_of_pages');
             $table->date('release_date');
-
-
-
         });
     }
 
