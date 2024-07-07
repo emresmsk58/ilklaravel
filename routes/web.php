@@ -13,3 +13,5 @@ Route::get("/liste",[\App\Http\Controllers\Modeloperations::class,'liste']);
 Route::get("/guncelle",[\App\Http\Controllers\Modeloperations::class,'guncelle']);
 Route::get("/sil",[\App\Http\Controllers\Modeloperations::class,'sil']);
 Route::get("/ekle",[\App\Http\Controllers\Modeloperations::class,'ekle']);
+Route::get("/form",[\App\Http\Controllers\Modeloperations::class,'gorunum']);
+Route::post("/add",[\App\Http\Controllers\Modeloperations::class,'add']);
