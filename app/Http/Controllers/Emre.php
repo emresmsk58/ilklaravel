@@ -8,8 +8,8 @@ class Emre extends Controller
 {
 public function guncelle(): void
 {
-    DB::table("books")->where("id",1)->uptade([
-        "metin"=>"This text field has been updated."]);
+    DB::table("books")->where("id","1")->update([
+        "title"=>"This text field has been updated."]);
 }
 public function sil()
 {
