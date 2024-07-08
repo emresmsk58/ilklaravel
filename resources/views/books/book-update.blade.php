@@ -20,7 +20,7 @@
         }
         table {
             width: 50%;
-             border-collapse: collapse;
+            border-collapse: collapse;
             margin-bottom: 20px;
             left: 100px;
         }
@@ -57,26 +57,26 @@
 </head>
 <body>
 <div class="panel panel-default">
-    <div class="panel-heading"> YENİ KİTAP EKLE  </div>
+    <div class="panel-heading"> KİTAP GÜNCELLE  </div>
     <div class="panel-body">
-        <form action="add" method="post">
+        <form action="{{route('update',$books->id)}}" method="post">
             @csrf
             <table>
                 <tr>
                     <td>Title</td>
-                    <td><input type="text" name="title" required /></td>
+                    <td><input type="text" name="title" value="{{$books->title}}" required /></td>
                 </tr>
                 <tr>
                     <td>Number of Pages</td>
-                    <td><input type="number" name="number_of_pages" required /></td>
+                    <td><input type="number" name="number_of_pages" value="{{$books->number_of_pages}}" required /></td>
                 </tr>
                 <tr>
                     <td>Release Date</td>
-                    <td><input type="date" name="release_date" required /></td>
+                    <td><input type="date" name="release_date" value="{{$books->release_date}}" required /></td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit">Submit</button>
+                        <button type="submit">Update</button>
                     </td>
                 </tr>
             </table>
@@ -93,7 +93,7 @@
 @endif
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">Kitap Listesi</div>
+        <div class="panel-heading">Kitap Güncelleme</div>
         <div class="panel-body">
             <table>
                 <tr>
@@ -108,12 +108,11 @@
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->number_of_pages }}</td>
                         <td>{{ $book->release_date}}</td>
-                        <td><a href="{{ route('book.update',['id' => $book->id]) }}">güncelle</a></td>
-                       <td><a href="{{ route('book.delete', ['id' => $book->id]) }}">sil</a></td>
+                        <td><a href="{{ route('book.update', ['id' => $book->id]) }}">güncelle</a></td>
                     </tr>
                 @endforeach
             </table>
-       </div>
+        </div>
     </div>
 
 </body>

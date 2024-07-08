@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Book;
 use Illuminate\Http\Request;
-use App\Models\Books;
 use Illuminate\Support\Carbon;
 
 class Modeloperations extends Controller
@@ -14,23 +13,23 @@ class Modeloperations extends Controller
 public function liste()
 {
     dd(Carbon::now()->addDay(),);
-    $bilgiler=Books::all();
+    $bilgiler = Book::all();
 dd($bilgiler) ;
 
 }
 public function guncelle()
 {
-    Books::where('id',2)->update([
+    Book::where('id', 2)->update([
        "title"=>"this area is up to date.",
     ]);
 }
 public function sil()
 {
-    Books::where('id',3)->delete();
+    Book::where('id', 4)->delete();
 }
 public function ekle()
 {
-    Books::create([
+    Book::create([
         "title"=>"model file added.",
         "number_of_pages"=>50,
         "release_date"=>Carbon::now(),
@@ -40,20 +39,55 @@ public function ekle()
     {
         return view('books.form');
     }
-    function add(Request $request)
+
+    public function add(Request $request)
+    {
+        $request->validate([
+
+            'title' => 'required',
+            'number_of_pages' => 'required|integer',
+            'release_date' => 'required|date',
+
+        ]);
+
+        Book::query()->create([
+            'title' => $request->input('title'),
+            'number_of_pages' => $request->input('number_of_pages'),
+            'release_date' => $request->input('release_date'),
+        ]);
+
+
+        return redirect()->route('books.form', [$request])->with(['message' => 'books added successfully']);
+
+    }
+
+    public function listeleme()
+    {
+        $books = Book::where('id', '!=', 0)
+            ->where('number_of_pages', '>', 0)
+            ->get();
+
+        return view('books.form', ['books' => $books]);
+    }
+public function delete($kitapId)
+{
+Book::query()->where('id',$kitapId)->delete();
+    return redirect()->route('books.form')->with(['message' => 'books added deleted']);
+}
+    public function update($id)
+    {
+        $books = Book::where($id)->first();
+        if ($books){
+            return view('books.book-update',compact('books'));
+        }
+        else{
+            return redirect()->route('books.book-update');
+        }
+
+    }
+    public function bookupdate(Request $request,$id)
     {
 
-$request->validate([
-   'title'=>'required',
-    'number_of_pages'=>'required',
-    'release_date'=>'required',
-]);
-$query =Books::create([
-    'title'=>$request->input('title'),
-    'number_of_pages'=>$request->input('number_of_pages'),
-    'release_date'=>$request->input('release_date')
-]);
+    }
 
-
-}
 }
