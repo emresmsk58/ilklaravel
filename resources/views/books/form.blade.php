@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Form Sayfası</title>
+    <title>Form Page</title>
     <style>
         .container {
             width: 80%;
@@ -23,6 +23,7 @@
              border-collapse: collapse;
             margin-bottom: 20px;
             left: 100px;
+
         }
         table, th, td {
             border: 1px solid #ddd;
@@ -52,12 +53,13 @@
             margin: 5px 0 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="panel panel-default">
-    <div class="panel-heading"> YENİ KİTAP EKLE  </div>
+    <div class="panel-heading">ADD NEW BOOK</div>
     <div class="panel-body">
         <form action="add" method="post">
             @csrf
@@ -93,7 +95,7 @@
 @endif
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">Kitap Listesi</div>
+        <div class="panel-heading">Book List</div>
         <div class="panel-body">
             <table>
                 <tr>
@@ -108,8 +110,8 @@
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->number_of_pages }}</td>
                         <td>{{ $book->release_date}}</td>
-                        <td><a href="{{ route('book.update', ['id' => $book->id]) }}">güncelle</a></td>
-                       <td><a href="{{ route('book.delete', ['id' => $book->id]) }}">sil</a></td>
+                        <td><a href="{{ route('book.update', ['id' => $book->id]) }}">update</a></td>
+                       <td><a href="{{ route('book.delete', ['id' => $book->id]) }}">delete</a></td>
                     </tr>
                 @endforeach
             </table>

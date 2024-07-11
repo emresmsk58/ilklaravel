@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Form Sayfası</title>
+    <title>Form Page</title>
     <style>
         .container {
             width: 80%;
@@ -60,29 +60,30 @@
             margin: 5px 0 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="panel panel-default">
-    <div class="panel-heading"> KİTAP GÜNCELLE</div>
+    <div class="panel-heading">UPDATE BOOK</div>
     <div class="panel-body">
-        <form action="{{route('books.book-update',$kitaplar->id)}}" method="POST">
+        <form action="{{route('books.book-update',$book->id)}}" method="POST">
             @csrf
             @method('PUT')
             <table>
                 <tr>
                     <td>Title</td>
-                    <td><input type="text" name="title" value="{{$kitaplar->title}}" required/></td>
+                    <td><input type="text" name="title" value="{{$book->title}}" required/></td>
                 </tr>
                 <tr>
                     <td>Number of Pages</td>
-                    <td><input type="number" name="number_of_pages" value="{{$kitaplar->number_of_pages}}" required/>
+                    <td><input type="number" name="number_of_pages" value="{{$book->number_of_pages}}" required/>
                     </td>
                 </tr>
                 <tr>
                     <td>Release Date</td>
-                    <td><input type="date" name="release_date" value="{{$kitaplar->release_date}}" required/></td>
+                    <td><input type="date" name="release_date" value="{{$book->release_date}}" required/></td>
                 </tr>
                 <tr>
                     <td>
@@ -101,20 +102,5 @@
         </ul>
     </div>
 @endif
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Kitap Güncelleme</div>
-        <div class="panel-body">
-            <table>
-                <tr>
-                    <th>id</th>
-                    <th>Title</th>
-                    <th>Number of Pages</th>
-                    <th>Release Date</th>
-                </tr>
-            </table>
-        </div>
-    </div>
-
 </body>
 </html>
