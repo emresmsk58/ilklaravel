@@ -108,7 +108,7 @@
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->number_of_pages }}</td>
                         <td>{{ $book->release_date}}</td>
-                        <td><a href="{{ route('book.update',['id' => $book->id]) }}">güncelle</a></td>
+                        <td><a href="{{ route('book.update', ['id' => $book->id]) }}">güncelle</a></td>
                        <td><a href="{{ route('book.delete', ['id' => $book->id]) }}">sil</a></td>
                     </tr>
                 @endforeach

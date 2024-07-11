@@ -15,26 +15,32 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
+
         .panel-body {
             margin-bottom: 10px;
         }
+
         table {
             width: 50%;
             border-collapse: collapse;
             margin-bottom: 20px;
             left: 100px;
         }
+
         table, th, td {
             border: 1px solid #ddd;
             left: 10px;
         }
+
         th, td {
             padding: 10px;
             text-align: left;
         }
+
         th {
             background-color: #f4f4f4;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -43,9 +49,11 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         input[type="text"], input[type="number"], input[type="date"] {
             width: 50%;
             padding: 10px;
@@ -57,22 +65,24 @@
 </head>
 <body>
 <div class="panel panel-default">
-    <div class="panel-heading"> KİTAP GÜNCELLE  </div>
+    <div class="panel-heading"> KİTAP GÜNCELLE</div>
     <div class="panel-body">
-        <form action="{{route('update',$books->id)}}" method="post">
+        <form action="{{route('books.book-update',$kitaplar->id)}}" method="POST">
             @csrf
+            @method('PUT')
             <table>
                 <tr>
                     <td>Title</td>
-                    <td><input type="text" name="title" value="{{$books->title}}" required /></td>
+                    <td><input type="text" name="title" value="{{$kitaplar->title}}" required/></td>
                 </tr>
                 <tr>
                     <td>Number of Pages</td>
-                    <td><input type="number" name="number_of_pages" value="{{$books->number_of_pages}}" required /></td>
+                    <td><input type="number" name="number_of_pages" value="{{$kitaplar->number_of_pages}}" required/>
+                    </td>
                 </tr>
                 <tr>
                     <td>Release Date</td>
-                    <td><input type="date" name="release_date" value="{{$books->release_date}}" required /></td>
+                    <td><input type="date" name="release_date" value="{{$kitaplar->release_date}}" required/></td>
                 </tr>
                 <tr>
                     <td>
@@ -102,15 +112,6 @@
                     <th>Number of Pages</th>
                     <th>Release Date</th>
                 </tr>
-                @foreach($books as $book)
-                    <tr>
-                        <td>{{ $book->id }}</td>
-                        <td>{{ $book->title }}</td>
-                        <td>{{ $book->number_of_pages }}</td>
-                        <td>{{ $book->release_date}}</td>
-                        <td><a href="{{ route('book.update', ['id' => $book->id]) }}">güncelle</a></td>
-                    </tr>
-                @endforeach
             </table>
         </div>
     </div>
