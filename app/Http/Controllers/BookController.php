@@ -23,9 +23,7 @@ class BookController extends Controller
 
     public function list()
     {
-        $books = Book::where('id', '!=', 0)
-            ->where('number_of_pages', '>', 0)
-            ->get();
+        $books = Book::all();
         return view('books.form', ['books' => $books]);
     }
 
